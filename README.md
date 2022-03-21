@@ -12,7 +12,7 @@ By [Rifky Aliffa](https://github.com/Penzragon)
 
 Pada project ini dataset yang digunakan adalah berbagai macam gambar kebakaran dan api. Dataset dapat dilihat di [Kaggle](https://www.kaggle.com/datasets/phylake1337/fire-dataset).
 
-## Objective
+## Objectives
 
 **Milestones 2** ini dibuat guna mengevaluasi Pembelajaran Phase 2 :
 
