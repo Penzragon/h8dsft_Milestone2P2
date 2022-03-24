@@ -19,6 +19,16 @@ def predict_image(img):
     st.image(img)
 
 
+st.markdown(
+    "<h1 style='text-align: center'> Forest Fire Detection </h1>",
+    unsafe_allow_html=True,
+)
+st.markdown(
+    "<p style='text-align: center'>This simple app is used to detect fire in the forest using a <strong>convolutional neural network</strong>.</p>",
+    unsafe_allow_html=True,
+)
+st.markdown("<hr>", unsafe_allow_html=True)
+
 col1, col2 = st.columns([1, 4])
 with col1:
     choose = st.radio("Select Image From", ("Upload", "URL"))
@@ -32,13 +42,13 @@ with col2:
             if button:
                 predict_image(img)
     else:
-        url = st.text_input("Enter URL")
-        if url is not None:
+        url = st.text_area("Enter URL")
+        if url:
             try:
                 response = requests.get(url)
                 img = Image.open(BytesIO(response.content))
                 button = st.button("Predict")
                 if button:
                     predict_image(img)
-            except:
+            except Exception as e:
                 st.error("Invalid URL")
