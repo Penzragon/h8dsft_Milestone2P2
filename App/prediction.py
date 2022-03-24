@@ -14,13 +14,14 @@ def predict_image(img):
     img_pred = tf.image.resize(img_pred, size=[224, 224])
     img_pred = img_pred / 255.0
     res = int(tf.round(model.predict(x=tf.expand_dims(img_pred, axis=0))))
-    res = "Fire Detected" if res == 0 else "No Fire Detected"
-    st.title(res)
-    st.image(img)
+    res = "🚒 Fire Detected 🚒" if res == 0 else "✨ No Fire Detected ✨"
+    title = f"<h2 style='text-align:center'>{res}</h2>"
+    st.markdown(title, unsafe_allow_html=True)
+    st.image(img, use_column_width=True)
 
 
 st.markdown(
-    "<h1 style='text-align: center'> Forest Fire Detection </h1>",
+    "<h1 style='text-align: center'>🔥🌳 Forest Fire Detection 🌳🔥</h1>",
     unsafe_allow_html=True,
 )
 st.markdown(
@@ -29,26 +30,25 @@ st.markdown(
 )
 st.markdown("<hr>", unsafe_allow_html=True)
 
-col1, col2 = st.columns([1, 4])
-with col1:
-    choose = st.radio("Select Image From", ("Upload", "URL"))
+choose = st.selectbox("Choose an option", ["Upload Image", "From URL"])
 
-with col2:
-    if choose == "Upload":
-        file = st.file_uploader("Choose an image...", type=["jpg"])
-        if file is not None:
-            img = Image.open(file)
+if choose == "Upload Image":
+    file = st.file_uploader("Choose an image...", type=["jpg"])
+    if file is not None:
+        img = Image.open(file)
+        button = st.button("Predict")
+        if button:
+            predict_image(img)
+else:
+    url = st.text_area("Enter URL", placeholder="Paste the image URL here...")
+    if url:
+        try:
+            response = requests.get(url)
+            img = Image.open(BytesIO(response.content))
             button = st.button("Predict")
             if button:
                 predict_image(img)
-    else:
-        url = st.text_area("Enter URL")
-        if url:
-            try:
-                response = requests.get(url)
-                img = Image.open(BytesIO(response.content))
-                button = st.button("Predict")
-                if button:
-                    predict_image(img)
-            except Exception as e:
-                st.error("Invalid URL")
+        except:
+            st.error(
+                "Failed to load the image. Please use a different URL or upload an image."
+            )
