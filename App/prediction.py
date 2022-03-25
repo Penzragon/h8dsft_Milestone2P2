@@ -8,10 +8,13 @@ from io import BytesIO
 
 
 def app():
+    # Load the model
     model = tf.keras.models.load_model("fire_detection_model.h5")
 
+    # Initialize img variable
     img = None
 
+    # Create prediction function
     def predict_image(img):
         img_pred = np.array(img)
         img_pred = tf.image.resize(img_pred, size=[224, 224])
@@ -22,23 +25,25 @@ def app():
         st.markdown(title, unsafe_allow_html=True)
         st.image(img, use_column_width=True)
 
+    # Header Section
     st.markdown(
-        "<h1 style='text-align: center'>🔥🌳 Forest Fire Detection 🌳🔥</h1>",
+        "<h1 style='text-align: center'>🔥🌳 Wildfire Detection 🌳🔥</h1>",
         unsafe_allow_html=True,
     )
     st.markdown(
-        "<p style='text-align: center'>This simple app is used to detect fire in the forest using a <strong>convolutional neural network</strong></p>",
+        "<p style='text-align: center'>This simple app is used to detect wildfire using a <strong>convolutional neural network</strong></p>",
         unsafe_allow_html=True,
     )
     st.markdown("<hr>", unsafe_allow_html=True)
 
+    # Image Upload Option Section
     choose = st.selectbox("Choose an option", ["Upload Image", "From URL"])
 
-    if choose == "Upload Image":
+    if choose == "Upload Image":  # If user chooses to upload image
         file = st.file_uploader("Choose an image...", type=["jpg"])
         if file is not None:
             img = Image.open(file)
-    else:
+    else:  # If user chooses to upload image from url
         url = st.text_area("Enter URL", placeholder="Paste the image URL here...")
         if url:
             try:
