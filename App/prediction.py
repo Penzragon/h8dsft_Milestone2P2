@@ -36,7 +36,7 @@ def app():
     )
     st.markdown("<hr>", unsafe_allow_html=True)
 
-    # Image Upload Option Section
+    # Image Upload Option
     choose = st.selectbox("Choose an option", ["Upload Image", "From URL"])
 
     if choose == "Upload Image":  # If user chooses to upload image
@@ -46,10 +46,10 @@ def app():
     else:  # If user chooses to upload image from url
         url = st.text_area("Enter URL", placeholder="Paste the image URL here...")
         if url:
-            try:
+            try:  # Try to get the image from the url
                 response = requests.get(url)
                 img = Image.open(BytesIO(response.content))
-            except:
+            except:  # If the url is not valid, show error message
                 st.error(
                     "Failed to load the image. Please use a different URL or upload an image."
                 )
