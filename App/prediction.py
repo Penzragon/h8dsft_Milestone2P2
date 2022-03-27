@@ -9,7 +9,7 @@ from io import BytesIO
 
 def app():
     # Load the model
-    model = tf.keras.models.load_model("fire_detection_model.h5")
+    model = tf.keras.models.load_model("model.h5")
 
     # Initialize img variable
     img = None
