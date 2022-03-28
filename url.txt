@@ -1,0 +1,5 @@
+Dataset:
+https://www.kaggle.com/datasets/phylake1337/fire-dataset
+
+Deployment:
+https://rifkyaliffa-wildfire.herokuapp.com/
