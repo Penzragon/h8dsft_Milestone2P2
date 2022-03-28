@@ -33,4 +33,4 @@ Pada project ini dataset yang digunakan adalah berbagai macam gambar kebakaran d
 - Mampu mengimplementasikan Artificial Neural Network dengan data yang ada.
 - Mampu menganalisis dan menjelaskan layer yang dibuat.
 
-Dan tujuan utama dari project ini adalah untuk membuat model CNN yang mampu mendeteksi apakah terjadi kebakaran atau tidak.
+Dan tujuan utama dari project ini adalah untuk membuat model CNN yang mampu mendeteksi apakah terjadi kebakaran hutan atau tidak.
