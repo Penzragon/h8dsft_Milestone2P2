@@ -1,0 +1,6 @@
+streamlit
+numpy
+tensorflow-cpu
+PIL
+io
+requests
